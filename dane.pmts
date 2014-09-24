@@ -1,0 +1,9 @@
+<specification pmts-version="3" author="jacek" description="testowy" www="www.wtf.pl" created-date="2014-08-27" created-time="17:22" modified-date="2014-08-27" modified-time="17:24" column1-name="Polski" column1-lang="pl" column2-name="Angielski" column2-lang="en"/>
+
+<record type="vcb" column1="Spam" column2="Spam"/>
+
+<record type="vcb" column1="Koza" column2="Goat"/>
+
+<record type="vcb" column1="Komputer" column2="Computer"/>
+
+<record type="vcb" column1="Urządzenie" column2="Device"/>

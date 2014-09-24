@@ -1,22 +1,48 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMenu>
+#include <QAction>
 
 namespace Ui {
-class MainWindow;
+  class MainWindow;
 }
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+  explicit MainWindow(QWidget *parent = 0);
+  ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+  Ui::MainWindow *ui;
+  void createActions();
+  void createMenus();
+  // OBIEKTY DO OBSŁUGI MENU
+  QMenu * naukaMenu;
+  QMenu * edytorMenu;
+  QMenu * pomocMenu;
+  QAction * naukaAct;
+  QAction * edytornowyAct;
+  QAction * edytorotworzAct;
+  //QAction * edytorAct;
+  QAction * aboutAct;
+  QAction * dokuAct;
+  QAction * licenceAct;
+  QAction * aboutqtAct;
+
+private slots:
+  void nauka();
+  void edytornowy();
+  void edytorotworz();
+  void about();
+  void doku();
+  void licence();
+  void aboutqt();
+
 };
 
 #endif // MAINWINDOW_H

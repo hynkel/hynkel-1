@@ -34,6 +34,10 @@ private:
   QAction * licenceAct;
   QAction * aboutqtAct;
 
+  // OKNO DO OTWIERANIA TESTU
+  QWidget * naukaFormPtr;       // DO WCZYTYWANIA TESTÓW
+  QWidget * edytorFormPtr;      // DO TWORZENIA TESTÓW
+
 private slots:
   void nauka();
   void edytornowy();

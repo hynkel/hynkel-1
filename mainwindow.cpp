@@ -8,7 +8,9 @@
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
-  ui(new Ui::MainWindow)
+  ui(new Ui::MainWindow),
+  naukaForm(0),
+  edytorForm(0)
 {
   QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
   ui->setupUi(this);
@@ -19,7 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-  delete ui;
+  if ( naukaFormPtr ) delete naukaFormPtr;
+  naukaFormPtr = 0;
 }
 
 void MainWindow::createActions()
@@ -64,7 +67,8 @@ void MainWindow::createMenus()
 
 void MainWindow::nauka()
 {
-  QMessageBox::question(this, "", "Nauka. Niy funguje.", QMessageBox::Yes);
+  //QMessageBox::question(this, "", "Nauka. Niy funguje.", QMessageBox::Yes);
+  //otw_nauka = new   //TUTAJ NIE HALO. NIE SKOŃCZONE
 }
 
 void MainWindow::edytornowy()

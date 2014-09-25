@@ -13,8 +13,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    lib.cpp \
+    naukaform.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    lib.h \
+    naukaform.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    naukaform.ui

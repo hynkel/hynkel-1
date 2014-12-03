@@ -5,14 +5,15 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "naukaform.h"
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow),
-  naukaForm(0),
-  edytorForm(0)
+  naukaFormPtr(0),
+  edytorFormPtr(0)
 {
-  QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+  //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
   ui->setupUi(this);
 
   createActions();
@@ -67,8 +68,9 @@ void MainWindow::createMenus()
 
 void MainWindow::nauka()
 {
-  //QMessageBox::question(this, "", "Nauka. Niy funguje.", QMessageBox::Yes);
-  //otw_nauka = new   //TUTAJ NIE HALO. NIE SKOŃCZONE
+
+   if ( ! naukaFormPtr ) naukaFormPtr = new naukaForm();
+  naukaFormPtr->show();
 }
 
 void MainWindow::edytornowy()

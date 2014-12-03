@@ -15,6 +15,9 @@ public:
   explicit naukaForm(QWidget *parent = 0);
   ~naukaForm();
 
+private slots:
+  void on_button_wczytaj_clicked();
+
 private:
   Ui::naukaForm *ui;
 };

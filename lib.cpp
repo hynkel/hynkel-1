@@ -21,6 +21,7 @@ unsigned long potegaDzies(int wykl)
   return ( 10 * potegaDzies( wykl - 1) );
 }
 
+/*
 unsigned long strToULong(const QString & in)
 {
   unsigned long res = 0;
@@ -28,3 +29,4 @@ unsigned long strToULong(const QString & in)
     res += ( in[i].toAscii() - '0' ) * potegaDzies( in.size() - i - 1 );
   return res;
 }
+*/

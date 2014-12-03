@@ -46,7 +46,6 @@ private slots:
   void doku();
   void licence();
   void aboutqt();
-
 };
 
 #endif // MAINWINDOW_H

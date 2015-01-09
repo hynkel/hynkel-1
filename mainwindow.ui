@@ -82,6 +82,19 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="button_wczytaj">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>160</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Wczytaj</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

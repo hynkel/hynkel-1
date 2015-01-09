@@ -1,4 +1,5 @@
-﻿#include <QtGui>
+﻿#include <QtCore>
+#include <QtGui>
 #include <QMessageBox>
 #include <QString>
 #include <QTextCodec>
@@ -18,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
   createActions();
   createMenus();
+  QString s("test");
+  QStringRef sr(&s);
+  qDebug() << "Porównanie na starcie programu: " << sr.compare("test", Qt::CaseInsensitive);
 }
 
 MainWindow::~MainWindow()

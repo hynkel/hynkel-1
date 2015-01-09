@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     lib.cpp \
-    naukaform.cpp
+    naukaform.cpp \
+    plik_testu/plik_testu.cpp
 
 HEADERS  += mainwindow.h \
     lib.h \
-    naukaform.h
+    naukaform.h \
+    plik_testu/plik_testu.h
 
 FORMS    += mainwindow.ui \
     naukaform.ui

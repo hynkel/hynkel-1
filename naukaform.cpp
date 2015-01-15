@@ -26,58 +26,78 @@ naukaForm::~naukaForm()
 
 void naukaForm::on_button_wczytaj_clicked()
 {
-  qDebug() << "nacisnieto przycisk wczytaj" << endl;
-  QString nazwa = QFileDialog::getOpenFileName(this, "Testowe - nagłówek", "/home/ser/Qt");
+  QString nazwa = QFileDialog::getOpenFileName(this, "Testowe - nagłówek", "/home/ser/Qt/hynkel");
   qDebug() << "Wybrano " << nazwa << endl;
+
+  // TUTAJ TWORZE PLIK TESTU
   plik_testu tescik;
+
   QFile plik(nazwa);
   if ( plik.open(QFile::ReadOnly) )
   {
     QTextStream plik_strumienia(&plik);
     QString linia;
+    QString wartosc;
     do
     {
       plik_strumienia >> linia;
       if ( linia[0] == '$' )
       {
         QStringRef porownanie(&linia, 1, linia.length() - 1);
+
+        // TUTAJ ZACZYNA SIĘ ANALIZA
         if ( ! porownanie.compare("test", Qt::CaseInsensitive) )
-        { //NOTE: Mozna zmienic, zeby nie byl czuly na wielkosc znakow - na razie mnie to wali
-          qDebug() << "znaleziono test" << endl;
-          QString wartosc;
+        {
           plik_strumienia >> wartosc;
           tescik.set_test( wartosc.mid(1, wartosc.length() - 2) );
-          qDebug() << "wartosc to " << tescik.get_test() << endl;
         }
         else if ( ! porownanie.compare("date", Qt::CaseInsensitive ) )
         {
-          qDebug() << "znaleziono date" << endl;
+          plik_strumienia >> wartosc;
+          int y, m, d;
+          y = wartosc.mid(1, 4).toInt();
+          m = wartosc.mid(6, 2).toInt();
+          d = wartosc.mid(9, 2).toInt();
+          tescik.set_data( QDate(y, m, d) );
         }
         else if ( ! porownanie.compare("desc", Qt::CaseInsensitive ) )
         {
-          qDebug() << "znaleziono desc" << endl;
+          plik_strumienia >> wartosc;
+          tescik.set_opis( wartosc.mid(1, wartosc.length() - 2) );
         }
         else if ( ! porownanie.compare("first", Qt::CaseInsensitive ) )
         {
-          qDebug() << "znaleziono first" << endl;
+          plik_strumienia >> wartosc;
+          tescik.set_pierwsza( wartosc.mid(1, wartosc.length() - 2) );
         }
         else if ( ! porownanie.compare("sec", Qt::CaseInsensitive ) )
         {
-          qDebug() << "znaleziono sec" << endl;
+          plik_strumienia >> wartosc;
+          tescik.set_druga( wartosc.mid(1, wartosc.length() - 2) );
         }
-        else if ( ! porownanie.compare("vocab", Qt::CaseInsensitive ) )
+        else if ( ! porownanie.compare("word", Qt::CaseInsensitive ) )
         {
-          qDebug() << "znaleziono vocab" << endl;
-        }
-        else if ( ! porownanie.compare("end_vocab", Qt::CaseInsensitive ) )
-        {
-          qDebug() << "znaleziono end_vocab" << endl;
+          qDebug() << linia << endl;
+          plik_strumienia >> wartosc;
+          qDebug() << wartosc << endl;
+          // NOTE: Kolene lewe rozwiazanie: najpierw pobieram jeden argument poza ifem, a teraz drugi w ifie.
+          QString pierwsze = wartosc.mid(1, wartosc.length() - 2 );
+          plik_strumienia >> wartosc;
+          qDebug() << wartosc << endl;
+          QString drugie = wartosc.mid(1, wartosc.length() - 2 );
+          slowo s(pierwsze, drugie);
+          qDebug() << "skonstruowane slowo :" << s << endl;
+          tescik.dodaj_slowo(pierwsze, drugie);
         }
         else
         {
-          qDebug() << "Nieznany znacznik." << endl;
+          // NOTE: strasznie lewe rozwiazanie, ale chce zostawic znacznik now_the_very_end
+          if ( linia.mid(1, linia.length() - 1 ) == "now_the_very_end" ) break;
+          qDebug() << "Nieznany znacznik:" << endl;
+          qDebug() << "    linia = " << linia << endl << "    wartosc = " << wartosc << endl;
         }
       }
     } while ( linia != "$now_the_very_end" );
   }
+  QApplication::quit();
 }

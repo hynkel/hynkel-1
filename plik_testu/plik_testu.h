@@ -35,6 +35,8 @@ public:
 
   void dodaj_slowo(QString pierwsza, QString druga);
   void dodaj_slowo(slowo & s);
+  int size(void) const { return slowa.size(); }
+  slowo & operator[](int i) { return slowa[i]; }
 
 private:
   QVector<slowo> slowa;

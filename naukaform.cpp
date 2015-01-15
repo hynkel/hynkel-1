@@ -44,7 +44,9 @@ void naukaForm::on_button_wczytaj_clicked()
       if ( linia[0] == '$' )
       {
         QStringRef porownanie(&linia, 1, linia.length() - 1);
-
+        // NOTE: Troche lewe to rozwiazanie, ze pobieram wartosci w ifie, ale
+        //       na razie nie mam pomyslu, jak lepiej to rozwiazac, bo w niektorych
+        //       parametrach musze pobierac dwie dodatkowe wartosci a w niektorych jedne
         // TUTAJ ZACZYNA SIĘ ANALIZA
         if ( ! porownanie.compare("test", Qt::CaseInsensitive) )
         {
@@ -77,16 +79,11 @@ void naukaForm::on_button_wczytaj_clicked()
         }
         else if ( ! porownanie.compare("word", Qt::CaseInsensitive ) )
         {
-          qDebug() << linia << endl;
           plik_strumienia >> wartosc;
-          qDebug() << wartosc << endl;
-          // NOTE: Kolene lewe rozwiazanie: najpierw pobieram jeden argument poza ifem, a teraz drugi w ifie.
           QString pierwsze = wartosc.mid(1, wartosc.length() - 2 );
           plik_strumienia >> wartosc;
-          qDebug() << wartosc << endl;
           QString drugie = wartosc.mid(1, wartosc.length() - 2 );
           slowo s(pierwsze, drugie);
-          qDebug() << "skonstruowane slowo :" << s << endl;
           tescik.dodaj_slowo(pierwsze, drugie);
         }
         else
@@ -99,5 +96,7 @@ void naukaForm::on_button_wczytaj_clicked()
       }
     } while ( linia != "$now_the_very_end" );
   }
-  QApplication::quit();
+  for( int i = 0; i < tescik.size(); i++ )
+    qDebug() << tescik[i] << endl;
+  //QApplication::quit(); // było do testowania
 }
